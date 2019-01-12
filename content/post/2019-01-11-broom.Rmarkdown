@@ -1,0 +1,76 @@
+---
+title: 使用broom包整理模型输出
+author: 李泉
+date: '2019-01-11'
+slug: broom
+categories:
+  - R
+tags:
+  - R Packages
+description: ''
+topics: [R]
+---
+
+R的建模函数比如lm, nls等的输出内容在格式上不利于后期做拓展分析，这个时候broom包就派上了用场，可以将模型输出整理成tidy data frame.
+
+来看个例子：
+
+```{r}
+lmfit<-lm(mpg ~wt,mtcars)
+summary(lmfit)
+```
+输出的结果人工解读可以，但要将内容用到后续分析中就会因为格式不一致产生困难。
+
+```{r}
+library(broom)
+tidy(lmfit)
+```
+
+这个时候模型的输出就被整理成了data.frame的格式。
+
+另外，用了这个添加函数之后，模型的参数可以被添加到原始数据之后
+
+```{r}
+augment(lmfit)
+```
+
+评估模型的各种统计量可以用以下命令整理
+
+```{r}
+glance(lmfit)
+```
+
+对glm和nls模型同样适用
+
+```{r}
+glmfit<-glm(am ~ wt, mtcars, family="binomial")
+tidy(glmfit)
+augment(glmfit)
+glance(glmfit)
+```
+
+```{r}
+nlsfit<-nls(mpg ~ k / wt + b, mtcars, start=list(k=1,b=0))
+tidy(nlsfit)
+augment(nlsfit,mtcars)
+glance(nlsfit)
+
+```
+
+使用t, wilcox 检验
+
+```{r}
+tt <- t.test(wt ~ am, mtcars)
+tidy(tt)
+glance(tt)
+```
+```{r}
+wt <- wilcox.test(wt ~ am, mtcars)
+tidy(wt)
+glance(wt)
+```
+
+以上使用实例来自于以下两个说明文件：
+
+[说明文件1](https://cran.r-project.org/web/packages/broom/broom.pdf)
+[说明文件2](https://cran.r-project.org/web/packages/broom/vignettes/broom.html)

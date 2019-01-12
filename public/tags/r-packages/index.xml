@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R Packages on 李泉的博客</title>
+    <link>/tags/r-packages/</link>
+    <description>Recent content in R Packages on 李泉的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/r-packages/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用broom包整理模型输出</title>
+      <link>/2019/01/11/broom/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/01/11/broom/</guid>
+      <description>R的建模函数比如lm, nls等的输出内容在格式上不利于后期做拓展分析，这个时候broom包就派上了用场，可以将模型输出整理成tidy data frame.
+来看个例子：
+lmfit&amp;lt;-lm(mpg ~wt,mtcars) summary(lmfit)  ## ## Call: ## lm(formula = mpg ~ wt, data = mtcars) ## ## Residuals: ## Min 1Q Median 3Q Max ## -4.5432 -2.3647 -0.1252 1.4096 6.8727 ## ## Coefficients: ## Estimate Std. Error t value Pr(&amp;gt;|t|) ## (Intercept) 37.2851 1.8776 19.858 &amp;lt; 2e-16 *** ## wt -5.3445 0.5591 -9.559 1.29e-10 *** ## --- ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.</description>
+    </item>
+    
+  </channel>
+</rss>

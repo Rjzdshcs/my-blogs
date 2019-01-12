@@ -1,0 +1,73 @@
+baseurl = "/"
+languageCode = "en-us"
+title = "李泉的博客"
+theme = "blackburn-master"
+googleAnalytics = ""
+disqusShortname = ""
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+[permalinks]
+    post = "/:year/:month/:day/:slug/"
+
+    
+ [[menu.main]]
+    name = "Home"
+    pre = "<i class='fa fa-home fa-fw'></i>"
+    weight = 1
+    identifier = "home"
+    url = "/"
+[[menu.main]]
+    name = "About"
+    pre = "<i class='fa fa-user fa-fw'></i>"
+    weight = 2
+    identifier = "about"
+    url = "/about/"    
+  [[menu.main]]
+    name = "Posts"
+    pre = "<i class='fa fa-list fa-fw'></i>"
+    weight = 3
+    identifier = "post"
+    url = "/post/"
+ 
+  [[menu.main]]
+    name = "Topics"
+    pre = "<i class='fa fa-folder fa-fw'></i>"
+    weight = 3
+    identifier = "topics"
+    url = "/topics/"
+    
+[[menu.main]]
+    name = "Tags"
+    pre = "<i class='fa fa-tag fa-fw'></i>"
+    weight = 4
+    identifier = "tags"
+    url = "/tags/"   
+    
+  [[menu.main]]
+    name = "Contact"
+    pre = "<i class='fa fa-phone fa-fw'></i>"
+    weight = 5
+    url = "/contact/"    
+    
+[social]    
+
+ twitter="QuanLi360"
+ github="Rjzdshcs"
+[params]
+    description = "A website built through Hugo and blogdown."
+
+    # options for highlight.js (version, additional languages, and theme)
+    highlightjsVersion = "9.12.0"
+    highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
+    highlightjsLang = ["r", "yaml"]
+    highlightjsTheme = "github"
+
+    MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
+    MathJaxVersion = "2.7.5"
+
+    [params.logo]
+    url = "logo.png"
+    width = 50
+    height = 50
+    alt = "Logo"
+

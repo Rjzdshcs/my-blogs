@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>李泉的博客</title>
+    <link>/</link>
+    <description>Recent content on 李泉的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blogdown和Netlify设置注意事项</title>
+      <link>/2019/01/12/blogdown-netlify/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/01/12/blogdown-netlify/</guid>
+      <description>因为对GitHub的使用方式不了解，所以在使用blogdown和Netlify建立博客网站的过程中遇到一些问题，不过好在网上能找到的帮助信息不少，跌跌撞撞的终于让网站上线了。以下是总结的一些细节，希望能帮助你更快的从零基础建设自己的博客网站。
+我最开始是看了谢益辉大神在2018年R会议上的一个30分钟左右的教学视频，虽然视频后段的一些技术细节没听懂，但是对使用blogdown的基本流程有了一个整体了解。谢益辉大神的教学视频在这。
+如果看不到视频的的话，Peter Baumgartner的博客上有一个分为四部分的教程。我是网站建好后才看到。他的教程里有很多截图，可以很方便的了解具体操作步骤。Peter Baumgartner的教程。遵循他教程里的步骤，就基本能让网站上线了。
+我建站过程中遇到的最大障碍是如何将网站设置资料推送到GitHub。这一步很关键，因为Netlify是通过读取GitHub中的文件来更新网站的。关于如何上传的帮助教程在此。注意事项如下：
+ 首先是确保你注册了一个GitHub账户，并且在账户中建立了一个文件夹(repository)。名字可以任意起。 然后遵照上面上传教程第2到第8步上传网站文件。特别注意第8步中的URL结尾要有.git  文件上传完毕后，就需要到Netlify网站中去设置了。这个上面Peter的教程里面有。我遇到的难题是最开始没有将Hugo的版本设置正确。在RStudio里面安装完blogdown以后，可以用blogdown::hugo_version()命令来查Hugo的版本。我安装的是0.53版，所以在Netlify的环境变量中要指明是0.53。截图参见Peter的教程。否则Netlify在解析网站文件的时候会报错(error code 255)。
+另外，我在网站上线之后，对原来使用的模版不满意，所以决定更新模版，新的这个界面是blackburn。建议从Hugo的网站下载，解压，然后将blackburn文件夹拖到themes文件夹里。如果使用git clone直接加载，会导致下载一个.git文件，影响Netlify重新解析网站。
+将blackburn放入themes文件夹之后，使用以下命令，将其上传到GitHub:
+ git add themes/blackburn-master
+ git commit -m “message” (message 处填入你自己中意的短语)
+ git push -u origin master
+  注意在命令终端操作时，你需要cd到保存所有网站文件的那个目录中去。
+如果你在网站上线后修改了config.toml和about.md文件，也要使用上面三步git命令，然后在Netlify中重新解析才能看到对网站的调整。
+关于如何向GitHub上传文件，我最开始是参照Robert Myles McDonnell的博客。原始链接在这里。我自己的经验是掠过他的前3步，直接参考第4步，如何使用git，以及如何建立.gitignore文件。该文件是隐藏文件，不一定看的到，在mac里，在.gitignore所在的文件夹中，用cmd + shift + . 就可以看到所有隐藏文件，用textedit打开，输入public，保存即可。
+掠过前3步的原因是Robert第一步就克隆GitHub里面的文件夹。而谢益辉和Peter都是首先从RStudio开始，先在线下生成所有的文件，然后再上传到GitHub。我个人的经验也是这个顺序比较好。在RStudio里面，点击new project&amp;hellip;, 选择New Diectory，选择Website using blogdown，建立一个directory name之后所有的网站文件就会被加载到你所新建的目录里。接下来所有电脑命令终端的操作就都是在这个目录里。
+后期对网站的优化还有很多工作要做，这些链接会有帮助：
+ blogdown电子书
+ Mike Treglia 的blogdown教程
+ 如何给网站的菜单项添加徽标
+ 免费徽标下载
+  希望你很快能拥有自己的博客网站！</description>
+    </item>
+    
+    <item>
+      <title>美国政府关门的经济影响简析</title>
+      <link>/2019/01/12/shutdown/</link>
+      <pubDate>Sat, 12 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/01/12/shutdown/</guid>
+      <description>一月十一号，自上年十二月二十二号凌晨开始，美国联邦政府关门就进入第21天，从明天开始将会刷新历史上的关门时长记录。
+受关门影响的部门涉及司法部、国务院、环保署等。受到波及的基本服务包括联邦政府管辖的博物馆和公园等都暂停开放，食品和医药管理署也暂停对食品加工企业的督查。总计80万工作受到影响的联邦雇员中，42万正常上班却拿不到工资，剩下的38万则在家等待复工通知。
+美国经济中消费者支出占到70%。西北大学的Scott Baker和纽约大学的Constantine Yannelis研究了2013年那次政府关门的影响。他们发现短期而言，关门导致联邦雇员家庭的平均支出缩减10%。而受到直接影响停工或工作却没有工资的联邦雇员家庭的支出缩减幅度更大，达到15%至20%。
+长期影响的关键因素要看政府重开之后所有受影响的雇员能否拿到关门期间的工资和福利。尽管在过去的历次关门中，受影响的联邦雇员最后都拿回了工资，但从法律上而言，却还存在不确定性。那些关门期间上班却被暂停工资的有法律保障可以拿回工资，在家停工的就不一定了，需要国会通过决议。所以在国会解决这个问题之前，关门的影响还会继续发酵。</description>
+    </item>
+    
+    <item>
+      <title>使用broom包整理模型输出</title>
+      <link>/2019/01/11/broom/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/01/11/broom/</guid>
+      <description>R的建模函数比如lm, nls等的输出内容在格式上不利于后期做拓展分析，这个时候broom包就派上了用场，可以将模型输出整理成tidy data frame.
+来看个例子：
+lmfit&amp;lt;-lm(mpg ~wt,mtcars) summary(lmfit)  ## ## Call: ## lm(formula = mpg ~ wt, data = mtcars) ## ## Residuals: ## Min 1Q Median 3Q Max ## -4.5432 -2.3647 -0.1252 1.4096 6.8727 ## ## Coefficients: ## Estimate Std. Error t value Pr(&amp;gt;|t|) ## (Intercept) 37.2851 1.8776 19.858 &amp;lt; 2e-16 *** ## wt -5.3445 0.5591 -9.559 1.29e-10 *** ## --- ## Signif. codes: 0 &#39;***&#39; 0.001 &#39;**&#39; 0.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
+      
+      <guid>/about/</guid>
+      <description>探索数据在政治分析中的角色和作用。</description>
+    </item>
+    
+  </channel>
+</rss>

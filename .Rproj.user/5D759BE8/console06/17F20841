@@ -1,0 +1,5 @@
+bash: ./library/Python/2.7/bin/virtualenvwrapper.sh: No such file or directory
+]0;~/Documents/HomeFiles/my-blogs[?1034hQuans-Mac-Tiger:my-blogs BillyJack$ [KQuans-Mac-Tiger:my-blogs BillyJack$ [KQuans-Mac-Tiger:my-blogs BillyJack$ git  init
+Initialized empty Git repository in /Users/BillyJack/Documents/HomeFiles/my-blogs/.git/
+]0;~/Documents/HomeFiles/my-blogsQuans-Mac-Tiger:my-blogs BillyJack$ git  remote add origin https://github.com/Rjz dshcs/my-blogs.git
+]0;~/Documents/HomeFiles/my-blogsQuans-Mac-Tiger:my-blogs BillyJack$ git  add .
