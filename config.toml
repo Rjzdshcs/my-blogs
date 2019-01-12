@@ -5,10 +5,15 @@ theme = "blackburn-master"
 googleAnalytics = ""
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+canonifyurls = true
+paginate = 10
 
 [permalinks]
     post = "/:year/:month/:day/:slug/"
 
+[indexes]
+  tag = "tags"
+  topic = "topics"
     
  [[menu.main]]
     name = "Home"
