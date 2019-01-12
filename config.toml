@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://quanli.netlify.com/"
 languageCode = "en-us"
 title = "李泉的博客"
 theme = "blackburn-master"
