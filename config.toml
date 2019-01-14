@@ -70,6 +70,8 @@ paginate = 10
     MathJaxCDN = "//cdnjs.cloudflare.com/ajax/libs"
     MathJaxVersion = "2.7.5"
 
+    dateFormat = "Jan 02，2006, 15:04"
+
     [params.logo]
     url = "logo.png"
     width = 50
