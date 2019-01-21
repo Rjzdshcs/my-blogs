@@ -1,0 +1,18 @@
+---
+title: 即写即看的R Markdown新包
+author: 李泉
+date: '2019-01-20'
+slug: r-markdown
+categories:
+  - R
+tags:
+  - R Packages
+description: ''
+topics: [R]
+---
+
+R Markdown的使用范围如今越来越广，不仅可以用来写R脚本，还可以用来写博客、写书、做笔记、做ppt。不过按照目前的操作流程，要看到整体的输出结果，不管是pdf、html还是word格式，都需要手动点击knit按钮。当文件比较长时，仅仅因为要查看一处微小改动，就需要重新编织整个文件，费时费力。新的xaringan包解决了这个问题，可以让我们即写即看，实时看到编辑输出结果，而不用老是去点击knit按钮。
+
+按照正常步骤下载安装xaringan包后，在RStudio界面中间上方的Addins中底部找到Infinite Moon Reader点击即可。以后不管写什么，每次只要进行保存操作，就可以快速看到更新后的输出结果，非常方便快捷。
+
+
