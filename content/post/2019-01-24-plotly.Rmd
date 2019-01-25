@@ -45,6 +45,7 @@ economics %>%
 ```
 
 
+
 plotly和ggplot结合起来可以完成更复杂的工作。比如对安斯科姆数据集的处理(Anscombe’s quartet ):
 
 数据的原始形态如下：
@@ -53,9 +54,10 @@ plotly和ggplot结合起来可以完成更复杂的工作。比如对安斯科�
 ```{r,message=F,warning=F}
 library(dplyr)
 library(tidyr)
+library(knitr)
 head(anscombe)
 anscombe%>% 
-  kable("html", caption = '安斯科姆数据集')
+  knitr::kable("html", caption = '安斯科姆数据集')
 ```
 
 整理转换之后变成：
