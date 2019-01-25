@@ -1,0 +1,51 @@
+---
+title: 在博客中展示数据表格
+author: 李泉
+date: '2019-01-25'
+slug: tables
+categories:
+  - R
+tags:
+  - Blogdown
+description: ''
+topics: [R]
+---
+
+遇到在博客中需要发布数据表格的情况时，可以利用kable函数进行如下操作：
+
+
+```{r,message=F,warning=F}
+library(dplyr)
+library(knitr)
+ct <- mtcars[, 1:8] %>% 
+  head(10) 
+ct %>% 
+  kable("html", caption = 'A table of the first 10 rows of the mtcars data.')
+
+```
+
+如果需要居中排版，可以使用kable_styling函数：
+
+```{r,message=F,warning=F}
+library(kableExtra)
+ct %>% 
+  kable("html", caption = '居中格式') %>%
+  kable_styling(position = "center")
+```
+
+更多操作比如将特定列用不同颜色标示，可以这么写：
+
+```{r,message=F,warning=F}
+library(formattable)
+ct %>% 
+  mutate(mpg = color_tile("transparent", "lightpink")(mpg),
+         hp = color_bar("lightseagreen")(hp)) %>%
+  kable("html", escape = F, caption = 'This table is colored.') %>%
+  kable_styling(position = "center") %>% 
+  column_spec(4, width = "3cm") 
+
+```
+
+
+
+[原始说明链接](https://blogdown-demo.rbind.io/2018/01/31/adding-tables-to-posts/)
