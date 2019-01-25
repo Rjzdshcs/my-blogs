@@ -48,7 +48,7 @@ economics %>%
 
 plotly和ggplot结合起来可以完成更复杂的工作。比如对安斯科姆数据集的处理(Anscombe’s quartet ):
 
-数据的原始形态如下：
+数据的原始形态如下,四个数据集中分别含有x和y，记为x1,x2,x3,x4,y1,y2,y3,y4：
 
 
 ```{r,message=F,warning=F}
