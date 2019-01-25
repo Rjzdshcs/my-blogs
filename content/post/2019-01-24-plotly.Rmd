@@ -1,0 +1,46 @@
+---
+title: 在博客中添加动态图
+author: 李泉
+date: '2019-01-24'
+slug: plotly
+categories:
+  - R
+tags:
+  - Blogdown
+description: ''
+topics: [R]
+---
+
+浏览网页是经常可以发现有些图可以提供动态信息，鼠标光标在图上移动，就可以显示出相应信息。在R中绘制这种图依靠的包是Plotly。
+
+下面这张图就是利用plotly包里面的economics数据框，绘制的失业率，在图中移动光标，就可以看到具体年份的数据。
+
+```{r, message=F, warning=F}
+library(plotly)
+p<-plot_ly(economics, x=~date, y=~unemploy/pop)
+p
+```
+
+如果想修改图的坐标轴名称和添加图的名称，可以做如下改动：
+
+```{r, message=F, warning=F}
+library(dplyr)
+library(plotly)
+
+p<-plot_ly(economics,x=~date, y=~unemploy/pop)
+
+p %>%
+layout(xaxis= list(title= "日期"), yaxis=list(title="失业率"), title ="美国失业率")
+
+```
+
+整合起来可以这么写：
+
+```{r, message=F, warning=F}
+library(plotly)
+library(dplyr)
+economics %>%
+  plot_ly(x=~date, y=~unemploy/pop) %>%
+  layout(xaxis= list(title= "日期"),yaxis=list(title="失业率"),title="美国失业率")
+```
+
