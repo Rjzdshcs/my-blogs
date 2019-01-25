@@ -1,5 +1,5 @@
 ---
-title: 在博客中添加动态图
+title: 在博客中添加互动图
 author: 李泉
 date: '2019-01-24'
 slug: plotly
@@ -44,3 +44,76 @@ economics %>%
   layout(xaxis= list(title= "日期"),yaxis=list(title="失业率"),title="美国失业率")
 ```
 
+
+plotly和ggplot结合起来可以完成更复杂的工作。比如对安斯科姆数据集的处理(Anscombe’s quartet ):
+
+数据的原始形态如下：
+
+
+```{r,message=F,warning=F}
+library(dplyr)
+library(tidyr)
+head(anscombe)
+anscombe%>% 
+  kable("html", caption = '安斯科姆数据集')
+```
+
+整理转换之后变成：
+
+```{r,message=F,warning=F}
+library(dplyr)
+library(tidyr)
+
+anscombe_tidy <- anscombe %>%
+    mutate(observation = seq_along(x1)) %>%
+    gather(key, value, -observation) %>%
+    separate(key, c("variable", "set"), 1, convert = TRUE) %>%
+    mutate(set = as.character(as.roman(set))) %>%
+    spread(variable, value) %>%
+    arrange(set)
+head(anscombe_tidy)
+
+```
+
+
+方便更好的认识数据，可以用DT包：
+
+```{r,message=F,warning=F}
+library(dplyr)
+library(tidyr)
+library(DT)
+anscombe_tidy %>% 
+datatable(rownames = FALSE, 
+          options = list(
+            pageLength = 11, 
+            autoWidth = TRUE, 
+            columnDefs = list(list(
+              className = 'dt-left', 
+              targets = 0),
+              list(className = 'dt-center', targets = 1))))
+
+```
+
+
+再利用plotly和ggplot作图：
+
+```{r,message=F,warning=F}
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(plotly)
+cols <- c("#0072B2", "#009E73", "#D55E00", "#CC79A7")
+ans_plot <- ggplot(anscombe_tidy, aes(x, y, colour = set)) +
+  geom_point(size = 3, alpha = .7) +
+  geom_smooth(method = "lm", se = FALSE) + 
+  facet_wrap(~ set) +
+  theme_bw() +
+  theme(legend.position="none") +
+  scale_colour_manual(values = cols) 
+
+ggplotly(ans_plot)
+
+```
+
+[原始说明链接](https://blogdown-demo.rbind.io/2017/09/07/adding-htmlwidgets-to-r-markdown-posts/)
