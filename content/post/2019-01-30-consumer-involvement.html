@@ -1,0 +1,43 @@
+---
+title: 如何测量消费者对产品和服务的态度
+author: 李泉
+date: '2019-01-30'
+slug: consumer involvement
+categories:
+  - R
+tags:
+  - R 技巧
+description: ''
+topics: [R]
+---
+
+
+
+<p>参与度involvment在市场营销中描述一个产品或服务在消费者心目中的位置或者说重要性/相关性。一般包含两个纬度： 认知cognitive involvement和情感affective involvment。前者涉及重要程度，相关程度，意义、价值和需求；后者涉及喜欢和是否感兴趣的程度。</p>
+<p>使用因子分析法，利用调查数据，可以很快地形成初步分析结果。</p>
+<pre class="r"><code>## ConsumerInvolvement.R
+library(tidyverse)
+library(psych)
+consumers &lt;- read_csv(&quot;customers_quan.csv&quot;) %&gt;%
+    select(starts_with(&quot;p&quot;))
+dim(consumers)
+
+## Data clesaning
+sdevs &lt;- apply(consumers, 1, sd, na.rm = TRUE)
+incomplete &lt;- apply(consumers, 1, function(i) any(is.na(i)))
+consumers &lt;- consumers[sdevs != 0 &amp; !incomplete, ]
+dim(consumers)
+
+## Exploratory Analysis
+consumers %&gt;%
+    rownames_to_column(var = &quot;Subject&quot;) %&gt;%
+    gather(Item, Response, -Subject) %&gt;%    
+    ggplot(aes(Item, Response)) + geom_boxplot(fill = &quot;#f7941d&quot;) +
+    ggtitle(&quot;personal Involvement Index&quot;,
+            subtitle = paste(&quot;Tap Water Consumers USA and Australia (n =&quot;,
+                             nrow(consumers), &quot;)&quot;))
+corrplot(consumers)
+piiFac &lt;- fa(consumers, nfactors = 2, rotate = &quot;oblimin&quot;)
+fa.diagram(piiFac)</code></pre>
+<p>因为数据无法下载，所以无法复制结果，不过基本的分析过程还是很清楚。</p>
+<p><a href="https://www.r-bloggers.com/factor-analysis-in-r-with-psych-package-measuring-consumer-involvement/">原作者Peter Prevos的更多说明解释在此</a></p>
