@@ -1,0 +1,74 @@
+---
+title: 如果财富分配和智力水平向匹配会是什么样子
+author: 李泉
+date: '2019-02-09'
+slug: wealthIQ
+categories:
+  - R
+tags:
+  - R 技巧
+description: ''
+topics: [R]
+---
+
+R-bloggers上的一篇博客非常有意思，探讨了如果每个人所掌握的财富和其能力相匹配，那么世界会是什么样子？
+
+由于能力难以测量，所以暂时用智力水准来代替。作者在博客中假定全世界人口的智力分布符合正态分布，平均值为100， 标准差为15。
+
+在分析中需要用到n个正态分布最大值的平均值公式， 根据这个[链接](https://math.stackexchange.com/questions/3080348/how-to-derive-the-formula-for-the-expected-value-for-maximum-of-n-normal-random)
+
+$ P (\underset{i}{max} X_i < \mu + t\sigma = \displaystyle \prod_{i} P(X_i < \mu + t\sigma) = \Phi(t)^n$
+
+推导上述公式，利用$t$代替$\mu + t\sigma$,可得：
+
+$P(\underset{i}{max} X_i < t) = \Phi(\frac{t - \mu}{\sigma})^n$
+
+根据定义，
+
+$E(\underset{i}{max}X_i) = \int_{-\infty}^{\infty} t \frac{d}{dt}\Phi(\frac{t - \mu}{\sigma})^ndt = \int_{\infty}^{\infty}\sigma(t + \mu) \sigma \frac{d}{dt}\Phi(t)^n\frac{dt}{\sigma} = \mu + \int_{-\infty}^{\infty} t \frac{d}{dt}\Phi(t)^ndt = \mu + \sigma n \int_{-\infty}^{\infty} t \phi(t)\Phi(t)^{n-1}dt$
+
+对上式在R里求积分，按照公式定义方程f：
+
+```{r}
+f <- function(x, n) x * dnorm(x) * pnorm(x)^(n-1)
+```
+
+测试方程
+
+```{r}
+for (i in 2:10) print(i * integrate(f, n = i, -Inf, Inf, abs.tol = 1e-20)$value)
+```
+
+然后根据假定的正态分布计算世界人口中最聪明的人的IQ值
+
+```{r}
+world_population <- 7.7e+09
+100 + 15 * world_population * integrate(f, n = world_population, -Inf, Inf, abs.tol = 1e-20)$value
+```
+
+根据计算，最聪明的人的IQ值是196
+
+那么如果世界财富分布同样符合IQ那样的正态分布的话：
+
+```{r}
+world_population <- 7.7e+09
+global_wealth <- 1.68e+14
+f <- function(x, n) x * dnorm(x) * pnorm(x)^(n - 1)
+per_capita_wealth <- global_wealth / world_population
+per_capita_wealth_sd <- per_capita_wealth * 0.15 
+per_capita_wealth + per_capita_wealth_sd * world_population * integrate(f, n = world_population, -Inf, Inf, abs.tol = 1e-20)$value
+
+
+```
+
+那么最聪明的人所掌握的财富应该是42786.21美元。
+
+目前的世界首富，亚马逊的贝索斯，名下有1400亿美元，换算成IQ，他需要多聪明才能挣到这么多？
+
+```{r}
+1.4e+11 / per_capita_wealth * 100
+```
+
+显而易见，IQ分布和财富分布没有关系
+
+[原始链接在此](https://www.r-bloggers.com/if-wealth-had-anything-to-do-with-intelligence/)
