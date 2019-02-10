@@ -17,7 +17,7 @@ R-bloggers上的一篇博客非常有意思，探讨了如果每个人所掌握�
 
 在分析中需要用到n个正态分布最大值的平均值公式， 根据这个[链接](https://math.stackexchange.com/questions/3080348/how-to-derive-the-formula-for-the-expected-value-for-maximum-of-n-normal-random)
 
-$P(\underset{i}{max} X_i < \mu + t\sigma = \displaystyle \prod_{i} P(X_i < \mu + t\sigma) = \Phi(t)^n$
+$P(\underset{i}{max} X_i < \mu + t\sigma） = \displaystyle \prod_{i} P(X_i < \mu + t\sigma) = \Phi(t)^n$
 
 推导上述公式，利用$t$代替$\mu + t\sigma$,可得：
 
