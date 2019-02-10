@@ -16,7 +16,7 @@ topics: [R]
 <p>R-bloggers上的一篇博客非常有意思，探讨了如果每个人所掌握的财富和其能力相匹配，那么世界会是什么样子？</p>
 <p>由于能力难以测量，所以暂时用智力水准来代替。作者在博客中假定全世界人口的智力分布符合正态分布，平均值为100， 标准差为15。</p>
 <p>在分析中需要用到n个正态分布最大值的平均值公式， 根据这个<a href="https://math.stackexchange.com/questions/3080348/how-to-derive-the-formula-for-the-expected-value-for-maximum-of-n-normal-random">链接</a></p>
-<p>$ P ( X_i &lt; + t= _{i} P(X_i &lt; + t) = (t)^n$</p>
+<p><span class="math inline">\(P(\underset{i}{max} X_i &lt; \mu + t\sigma = \displaystyle \prod_{i} P(X_i &lt; \mu + t\sigma) = \Phi(t)^n\)</span></p>
 <p>推导上述公式，利用<span class="math inline">\(t\)</span>代替<span class="math inline">\(\mu + t\sigma\)</span>,可得：</p>
 <p><span class="math inline">\(P(\underset{i}{max} X_i &lt; t) = \Phi(\frac{t - \mu}{\sigma})^n\)</span></p>
 <p>根据定义，</p>
