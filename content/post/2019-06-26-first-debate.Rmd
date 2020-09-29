@@ -9,7 +9,7 @@ output:
   word_document: default
 description: ''
 slug: first-debate
-tags: 大选2020
+tags: "大选2020"
 categories: 美国政治
 topics: []
 ---
