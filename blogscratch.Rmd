@@ -1,0 +1,11 @@
+---
+title: "blog scratch"
+author: "Quan Li"
+date: "1/23/2019"
+output: html_document
+---
+
+Gertrude Elizabeth Margaret Anscombe 
+
+伊丽莎白 安斯科姆
+
